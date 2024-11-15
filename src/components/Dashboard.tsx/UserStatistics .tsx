@@ -29,7 +29,12 @@ const UserStatistics = () => {
         });
         console.log("Statistics Response", response.data);
         setPoints(response.data.totalPoints);
-        setAchievements(response.data.achievements);
+
+        setAchievements(
+          Array.isArray(response.data.achievements)
+            ? response.data.achievements
+            : []
+        );
       } catch (error) {
         console.error("Error fetching user statistics:", error);
       }
